@@ -83,7 +83,7 @@ const Cadastro: React.FC = () => {
           <div className='entrar'>
             <p>Já tem conta? </p>
             <a href="/" className='linkLogin'> Entrar</a>
-            
+
           </div>
         </div>
       </div>
