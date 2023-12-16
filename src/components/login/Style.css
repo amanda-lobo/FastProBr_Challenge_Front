@@ -1,7 +1,7 @@
 h1 {
     font-family: 'Open Sans', sans-serif;
-  }  
-  
+}
+
 .bodyLogin {
     width: 100vw;
     height: 100vh;
@@ -14,7 +14,7 @@ h1 {
 }
 
 .bodyCadastro img {
-    margin: 10px;
+
 }
 
 .loginSpace {
@@ -40,7 +40,7 @@ h1 {
     display: flex;
     flex-direction: column;
     margin-top: 10px;
- }
+}
 
 .inputLogin {
     width: 100%;
@@ -78,14 +78,14 @@ input::placeholder {
     background-color: rgb(231, 230, 240);
 }
 
-.botaoContinuar{
+.botaoContinuar {
     width: 100%;
     height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-} 
+}
 
 .botaoContinuar button {
     width: 70%;
@@ -94,7 +94,7 @@ input::placeholder {
     border-style: none;
     background-color: rgb(255, 187, 0);
     cursor: pointer;
-} 
+}
 
 .cadastro {
     width: 100%;
@@ -107,11 +107,31 @@ input::placeholder {
 
 .cadastro p {
     margin-right: 5px;
-  }
+}
 
-  .linkCadastro {
+.linkCadastro {
     color: inherit;
     text-decoration: none;
     font-family: 'Open Sans', sans-serif;
-  }
+}
 
+@media (max-width: 700px) {
+
+    .bodyLogin {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .loginSpace {
+        background-color: rgb(255, 255, 255);
+        width: 340px;
+        height: 350px;
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+    }
+
+}

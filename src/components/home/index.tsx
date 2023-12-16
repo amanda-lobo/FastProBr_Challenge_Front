@@ -13,7 +13,7 @@ interface StarWarsCharacter {
 const Home: React.FC = () => {
     const [starWarsData, setStarWarsData] = useState<StarWarsCharacter[]>([]);
     const [currentPage, setCurrentPage] = useState(0);
-    const itemsPerPage = 8;
+    const itemsPerPage = 2;
 
     const token = localStorage.getItem('userToken');
     const navigate = useNavigate();
