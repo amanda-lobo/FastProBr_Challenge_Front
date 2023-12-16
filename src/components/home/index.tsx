@@ -46,7 +46,7 @@ const Home: React.FC = () => {
         };
 
         fetchData();
-    }, []);
+    }, [token]);
 
     const paginatedData = starWarsData.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
 

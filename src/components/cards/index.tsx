@@ -10,13 +10,13 @@ const Cards: React.FC<CardsProps> = ({ nome, idade, altura, peso }) => {
               <span>Nome:</span> {nome}
             </li>
             <li>
-              <span>Idade:</span> {idade} anos
+              <span>Idade:</span> {isNaN(idade)?"Desconhecida":idade+" anos"}
             </li>
             <li>
-              <span>Cidade:</span> {altura} cm
+              <span>Altura:</span> {isNaN(altura)? "Desconhecida": altura+" cm"}
             </li>
             <li>
-              <span>Cidade:</span> {peso} cm
+              <span>Peso:</span> {peso} kg
             </li>
           </ul>
         </div>
