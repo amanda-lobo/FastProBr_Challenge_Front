@@ -4,13 +4,12 @@ import './Style.css'
 interface DialogProps {
   isOpen: boolean;
   onClose: () => void;
-  children: ReactNode;
   titulo: string;
   mensagem: string;
 
 }
 
-const Alertas: React.FC<DialogProps> = ({ isOpen, onClose, children, titulo, mensagem }) => {
+const Alertas: React.FC<DialogProps> = ({ isOpen, onClose, titulo, mensagem }) => {
   if (!isOpen) return null;
 
   return (

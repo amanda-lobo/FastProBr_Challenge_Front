@@ -49,7 +49,7 @@ const Cadastro: React.FC = () => {
 
   return (
     <>
-      <Alertas isOpen={isDialogOpen} onClose={closeDialog} mensagem={mensagem} titulo='Erro ao Cadastrar ' children={undefined} />
+      <Alertas isOpen={isDialogOpen} onClose={closeDialog} mensagem={mensagem} titulo='Erro ao Cadastrar ' />
       <div className='bodyCadastro'>
         <div className='cadastroSpace'>
           <div className='titleCadastro'><h1>Cadastro</h1></div>

@@ -52,7 +52,7 @@ const Login: React.FC = () => {
 
     return (
         <>
-            <Alertas isOpen={isDialogOpen} onClose={closeDialog} mensagem={mensagem} titulo='Erro ao Logar ' children={undefined} />
+            <Alertas isOpen={isDialogOpen} onClose={closeDialog} mensagem={mensagem} titulo='Erro ao Logar ' />
             <div className='bodyLogin'>
                 <img src="https://lumiere-a.akamaihd.net/v1/images/sw_logo_stacked_2x-52b4f6d33087_7ef430af.png?region=0,0,586,254" alt="" width={200} />
                 <br />
