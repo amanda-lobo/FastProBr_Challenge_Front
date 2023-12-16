@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import userLogin from '../../model/userLogin';
 import './Style.css'
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Login: React.FC = () => {
     const [user, setUser] = useState<userLogin>({
@@ -70,7 +71,7 @@ const Login: React.FC = () => {
                 </div>
                 <div className='cadastro'>
                     <p>Não tem conta? </p>
-                    <a href="/cadastro" className='linkLogin'> Cadastre-se</a>
+                    <Link to="/cadastro" className='linkLogin'>Cadastre-se</Link>
                 </div>
             </div>
         </div>

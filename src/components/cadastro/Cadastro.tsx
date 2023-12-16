@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../cadastro/Style.css'
+import { Link } from 'react-router-dom';
 
 const Cadastro: React.FC = () => {
   const [user, setUser] = useState({
@@ -82,7 +83,7 @@ const Cadastro: React.FC = () => {
           </div>
           <div className='entrar'>
             <p>Já tem conta? </p>
-            <a href="/" className='linkLogin'> Entrar</a>
+            <Link to="/" className='linkLogin'>Entrar</Link>
 
           </div>
         </div>
