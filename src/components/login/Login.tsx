@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import userLogin from '../../model/userLogin';
 import './Style.css'
+import { useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
     const [user, setUser] = useState<userLogin>({
         email: '',
         senha: '',
     });
+
+    const navigate = useNavigate();
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -26,7 +29,8 @@ const Login: React.FC = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Login bem-sucedido:', data);
+                localStorage.setItem('userToken', data.token);
+                navigate('/home');
             } else {
                 console.error('Erro de login:', response.statusText);
             }
