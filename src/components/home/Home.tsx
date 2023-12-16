@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../home/style.css';
-import Cards from '../cards';
+import Cards from '../cards/Cards';
 import { useNavigate } from 'react-router-dom';
+import Carregamento from '../carregamento/Carregamento';
 
 interface StarWarsCharacter {
     name: string;
@@ -17,13 +18,17 @@ const Home: React.FC = () => {
 
     const token = localStorage.getItem('userToken');
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
+
 
     useEffect(() => {
         const fetchData = async () => {
+            setIsLoading(true); // Inicia o carregamento
+
             try {
                 const response = await fetch('https://fast-pro-challenge.onrender.com/starwars-data', {
                     headers: {
-                        'Authorization': `Bearer ${token}`, 
+                        'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json',
                     },
                 });
@@ -43,6 +48,8 @@ const Home: React.FC = () => {
             } catch (error) {
                 console.error('Erro na solicitação:', error);
             }
+
+            setIsLoading(false);
         };
 
         fetchData();
@@ -57,10 +64,14 @@ const Home: React.FC = () => {
     const previousPage = () => {
         setCurrentPage((prev) => (prev - 1 >= 0) ? prev - 1 : prev);
     };
-    
+
     function logout() {
         localStorage.removeItem('token');
         navigate('/');
+    }
+
+    if (isLoading) {
+        return <Carregamento />
     }
 
     return (

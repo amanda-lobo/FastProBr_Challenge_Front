@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './components/login/Login';
 import Cadastro from './components/cadastro/Cadastro';
-import Home from './components/home';
+import Home from './components/home/Home';
 
 const App: React.FC = () => {
   const [] = useState<number>(0);

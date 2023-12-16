@@ -1,0 +1,18 @@
+.carregamento-body
+{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carregamento-body h1 {
+    color: white;
+    text-align: center;
+    font-size: 4em; /* Tamanho da fonte aumentado */
+    /* Efeito Neon muito sutil */
+    text-shadow:
+      0 0 2px #fff,
+      0 0 4px #fff;
+  }
