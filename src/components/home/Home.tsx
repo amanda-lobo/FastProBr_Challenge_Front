@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../home/style.css';
-import Cards from '../cards';
+import Cards from '../cards/Cards';
 import { useNavigate } from 'react-router-dom';
+import Carregamento from '../carregamento/Carregamento';
+import Background from '../background/background';
 
 interface StarWarsCharacter {
     name: string;
@@ -13,17 +15,21 @@ interface StarWarsCharacter {
 const Home: React.FC = () => {
     const [starWarsData, setStarWarsData] = useState<StarWarsCharacter[]>([]);
     const [currentPage, setCurrentPage] = useState(0);
-    const itemsPerPage = 8;
+    const itemsPerPage = 2;
 
     const token = localStorage.getItem('userToken');
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
+
 
     useEffect(() => {
         const fetchData = async () => {
+            setIsLoading(true); // Inicia o carregamento
+
             try {
                 const response = await fetch('https://fast-pro-challenge.onrender.com/starwars-data', {
                     headers: {
-                        'Authorization': `Bearer ${token}`, 
+                        'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json',
                     },
                 });
@@ -43,28 +49,41 @@ const Home: React.FC = () => {
             } catch (error) {
                 console.error('Erro na solicitação:', error);
             }
+
+            setIsLoading(false);
         };
 
         fetchData();
     }, [token]);
 
     const paginatedData = starWarsData.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
+    const isLastPage = currentPage >= Math.ceil(starWarsData.length / itemsPerPage) - 1;
+    const isFirstPage = currentPage === 0;
 
     const nextPage = () => {
-        setCurrentPage((prev) => (prev + 1 < starWarsData.length / itemsPerPage) ? prev + 1 : prev);
+        if (!isLastPage) {
+            setCurrentPage((prev) => prev + 1);
+        }
     };
 
     const previousPage = () => {
-        setCurrentPage((prev) => (prev - 1 >= 0) ? prev - 1 : prev);
+        if (!isFirstPage) {
+            setCurrentPage((prev) => prev - 1);
+        }
     };
-    
+
     function logout() {
         localStorage.removeItem('token');
         navigate('/');
     }
 
+    if (isLoading) {
+        return <Carregamento />
+    }
+
     return (
         <>
+            <Background />
             <div className='bodyHome'>
                 <div className="navbar">
                     <button onClick={logout}><p>Sair</p></button>
@@ -74,7 +93,7 @@ const Home: React.FC = () => {
                         <div className="spaceCard" key={index}>
                             <Cards
                                 nome={character.name}
-                                idade={2023 - parseInt(character.birth_year.replace('BBY', ''))}
+                                idade={character.birth_year}
                                 altura={character.height}
                                 peso={character.mass}
                             />
@@ -83,8 +102,12 @@ const Home: React.FC = () => {
                 </div>
                 <div className='footer'>
                     <div className="paginacao">
-                        <button onClick={previousPage}><p>{"<"}</p></button>
-                        <button onClick={nextPage}><p>{">"}</p></button>
+                        {!isFirstPage && (
+                            <button onClick={previousPage}><p>{"<"}</p></button>
+                        )}
+                        {!isLastPage && (
+                            <button onClick={nextPage}><p>{">"}</p></button>
+                        )}
                     </div>
                 </div>
             </div>

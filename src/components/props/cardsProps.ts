@@ -1,6 +1,6 @@
 interface CardsProps {
     nome: string;
-    idade: number;
+    idade: string;
     altura: number;
     peso: number;
   }

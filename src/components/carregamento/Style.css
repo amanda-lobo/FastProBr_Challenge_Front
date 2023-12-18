@@ -1,0 +1,10 @@
+.carregamento-body
+{
+    position: fixed; /* ou `absolute` dependendo do layout */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; /* opcional, dependendo do layout */
+    height: 100%; /* opcional, dependendo do layout */
+    z-index: 10; /* Assegura que o spinner fique acima dos outros elementos */
+}

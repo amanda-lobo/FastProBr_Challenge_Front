@@ -1,0 +1,24 @@
+.estrela-body {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-color: black;
+  overflow: hidden;
+}
+
+.star {
+  width: 2px;
+  height: 2px;
+  background-color: white;
+  position: absolute;
+  border-radius: 50%;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}

@@ -5,13 +5,14 @@
     justify-content: center;
     align-items: center;
     display: flex;
+    
 }
 
 .card {
-    width: 245px;
-    height: 210px;
+    width: 300px;
+    height: 300px;
     background-color: #ffffff;
-    margin: 7px;
+    margin: 10px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -24,8 +25,8 @@
 }
 
 .card:hover {
-    width: 255px;
-    height: 220px;
+  width: 320px;
+  height: 320px;
     background-color: #ffffff;
     margin: 7px;
     display: flex;
@@ -60,3 +61,69 @@ ul {
   span {
     font-weight: bold;
   }
+
+  @media (max-width: 700px) {
+    .cadastroSpace {
+        background-color: rgb(255, 255, 255);
+        width: 340px;
+        height: 500px;
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card {
+      width: 250px;
+      height: 250px;
+      background-color: #ffffff;
+      margin: 10px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      border-radius: 5px;
+      -webkit-box-shadow: 1px 0px 30px 13px rgba(146, 146, 148, 0.6);
+      -moz-box-shadow: 1px 0px 30px 13px rgba(146, 146, 148, 0.6);
+      box-shadow: 1px 0px 30px 13px rgba(146, 146, 148, 0.6);
+      border-radius: 10%;
+      transition: 0.3s;
+  }
+  .card:hover {
+    width: 250px;
+    height: 250px;
+  }
+  
+
+}
+
+@media (max-height: 700px) {
+  .cadastroSpace {
+      background-color: rgb(255, 255, 255);
+      width: 340px;
+      height: 500px;
+      border-radius: 30px;
+      display: flex;
+      flex-direction: column;
+  }
+
+  .card {
+    width: 200px;
+    height: 200px;
+    background-color: #ffffff;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 5px;
+    -webkit-box-shadow: 1px 0px 30px 13px rgba(146, 146, 148, 0.6);
+    -moz-box-shadow: 1px 0px 30px 13px rgba(146, 146, 148, 0.6);
+    box-shadow: 1px 0px 30px 13px rgba(146, 146, 148, 0.6);
+    border-radius: 10%;
+    transition: 0.3s;
+}
+.card:hover {
+  width: 200px;
+  height: 200px;
+}
+
+
+}
