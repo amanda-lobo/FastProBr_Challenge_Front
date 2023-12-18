@@ -45,7 +45,9 @@ const Login: React.FC = () => {
             <img src="https://lumiere-a.akamaihd.net/v1/images/sw_logo_stacked_2x-52b4f6d33087_7ef430af.png?region=0,0,586,254" alt="" width={200} />
             <br />
             <div className='loginSpace'>
-                <div className='titleLogin'><h1>Login</h1></div>
+                <div className='titleLogin'>
+                    <h1>Login</h1>
+                </div>
                 <div className='espacoInput'>
                     <div className='inputLogin'>
                         <input
