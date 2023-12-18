@@ -3,6 +3,7 @@ import '../home/style.css';
 import Cards from '../cards/Cards';
 import { useNavigate } from 'react-router-dom';
 import Carregamento from '../carregamento/Carregamento';
+import Background from '../background/background';
 
 interface StarWarsCharacter {
     name: string;
@@ -56,13 +57,19 @@ const Home: React.FC = () => {
     }, [token]);
 
     const paginatedData = starWarsData.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
+    const isLastPage = currentPage >= Math.ceil(starWarsData.length / itemsPerPage) - 1;
+    const isFirstPage = currentPage === 0;
 
     const nextPage = () => {
-        setCurrentPage((prev) => (prev + 1 < starWarsData.length / itemsPerPage) ? prev + 1 : prev);
+        if (!isLastPage) {
+            setCurrentPage((prev) => prev + 1);
+        }
     };
 
     const previousPage = () => {
-        setCurrentPage((prev) => (prev - 1 >= 0) ? prev - 1 : prev);
+        if (!isFirstPage) {
+            setCurrentPage((prev) => prev - 1);
+        }
     };
 
     function logout() {
@@ -76,6 +83,7 @@ const Home: React.FC = () => {
 
     return (
         <>
+            <Background />
             <div className='bodyHome'>
                 <div className="navbar">
                     <button onClick={logout}><p>Sair</p></button>
@@ -94,8 +102,12 @@ const Home: React.FC = () => {
                 </div>
                 <div className='footer'>
                     <div className="paginacao">
-                        <button onClick={previousPage}><p>{"<"}</p></button>
-                        <button onClick={nextPage}><p>{">"}</p></button>
+                        {!isFirstPage && (
+                            <button onClick={previousPage}><p>{"<"}</p></button>
+                        )}
+                        {!isLastPage && (
+                            <button onClick={nextPage}><p>{">"}</p></button>
+                        )}
                     </div>
                 </div>
             </div>

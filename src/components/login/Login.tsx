@@ -4,6 +4,7 @@ import './Style.css'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Alertas from '../alertas/Alertas';
+import Background from '../background/background';
 
 
 const Login: React.FC = () => {
@@ -14,6 +15,7 @@ const Login: React.FC = () => {
 
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [mensagem, setMensagem] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const openDialog = () => setIsDialogOpen(true);
     const closeDialog = () => setIsDialogOpen(false);
@@ -27,6 +29,7 @@ const Login: React.FC = () => {
 
     const handleLogin = async () => {
         try {
+            setIsLoading(true)
             const response = await fetch('https://fast-pro-challenge.onrender.com/login', {
                 method: 'POST',
                 headers: {
@@ -36,6 +39,7 @@ const Login: React.FC = () => {
             });
 
             if (response.ok) {
+                setIsLoading(false)
                 const data = await response.json();
                 localStorage.setItem('userToken', data.token);
                 navigate('/home');
@@ -43,16 +47,19 @@ const Login: React.FC = () => {
                 const erroData = await response.json();
                 setMensagem(erroData.message || 'Erro desconhecido');
                 openDialog();
+                setIsLoading(false)
             }
         } catch (error) {
             setMensagem('Erro ao fazer a solicitação:')
             openDialog();
+            setIsLoading(false)
         }
     };
 
     return (
         <>
             <Alertas isOpen={isDialogOpen} onClose={closeDialog} mensagem={mensagem} titulo='Erro ao Logar ' />
+            <Background />
             <div className='bodyLogin'>
                 <img src="https://lumiere-a.akamaihd.net/v1/images/sw_logo_stacked_2x-52b4f6d33087_7ef430af.png?region=0,0,586,254" alt="" width={200} />
                 <br />
@@ -78,7 +85,7 @@ const Login: React.FC = () => {
                             />
                         </div>
                         <div className='botaoContinuar'>
-                            <button onClick={handleLogin}>Entrar</button>
+                            <button onClick={handleLogin} disabled={isLoading}>Entrar</button>
                         </div>
                     </div>
                     <div className='cadastro'>

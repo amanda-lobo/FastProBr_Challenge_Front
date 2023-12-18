@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../cadastro/Style.css'
 import { Link, useNavigate } from 'react-router-dom';
 import Alertas from '../alertas/Alertas';
+import Background from '../background/background';
 
 const Cadastro: React.FC = () => {
   const [user, setUser] = useState({
@@ -14,6 +15,7 @@ const Cadastro: React.FC = () => {
   const navigate = useNavigate();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [mensagem, setMensagem] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const openDialog = () => setIsDialogOpen(true);
   const closeDialog = () => setIsDialogOpen(false);
@@ -25,7 +27,7 @@ const Cadastro: React.FC = () => {
 
   const handleCadastro = async () => {
     try {
-      console.log(user);
+      setIsLoading(true)
       const response = await fetch('https://fast-pro-challenge.onrender.com/users', {
         method: 'POST',
         headers: {
@@ -36,20 +38,24 @@ const Cadastro: React.FC = () => {
 
       if (response.ok) {
         navigate('/');
+        setIsLoading(false)
 
       } else {
         const erroData = await response.json();
         setMensagem(erroData.message || 'Erro desconhecido');
         openDialog();
+        setIsLoading(false)
       }
     } catch (error) {
       console.error('Erro ao fazer a solicitação:', error);
+      setIsLoading(false)
     }
   };
 
   return (
     <>
       <Alertas isOpen={isDialogOpen} onClose={closeDialog} mensagem={mensagem} titulo='Erro ao Cadastrar ' />
+      <Background />
       <div className='bodyCadastro'>
         <div className='cadastroSpace'>
           <div className='titleCadastro'><h1>Cadastro</h1></div>
@@ -91,7 +97,7 @@ const Cadastro: React.FC = () => {
               />
             </div>
             <div className='botaoContinuar'>
-              <button onClick={handleCadastro}>Cadastrar</button>
+              <button onClick={handleCadastro} disabled={isLoading} >Cadastrar</button>
             </div>
             <div className='entrar'>
               <p>Já tem conta? </p>

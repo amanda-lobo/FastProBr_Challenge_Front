@@ -1,18 +1,10 @@
 .carregamento-body
 {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: fixed; /* ou `absolute` dependendo do layout */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; /* opcional, dependendo do layout */
+    height: 100%; /* opcional, dependendo do layout */
+    z-index: 10; /* Assegura que o spinner fique acima dos outros elementos */
 }
-
-.carregamento-body h1 {
-    color: white;
-    text-align: center;
-    font-size: 4em; /* Tamanho da fonte aumentado */
-    /* Efeito Neon muito sutil */
-    text-shadow:
-      0 0 2px #fff,
-      0 0 4px #fff;
-  }
