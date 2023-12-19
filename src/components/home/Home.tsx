@@ -9,7 +9,6 @@ interface StarWarsCharacter {
     name: string;
     height: number;
     mass: number;
-    birth_year: string;
 }
 
 const Home: React.FC = () => {
@@ -40,7 +39,6 @@ const Home: React.FC = () => {
                         name: character.name,
                         height: character.height,
                         mass: character.mass,
-                        birth_year: character.birth_year,
                     }));
                     setStarWarsData(characters);
                 } else {
@@ -93,7 +91,6 @@ const Home: React.FC = () => {
                         <div className="spaceCard" key={index}>
                             <Cards
                                 nome={character.name}
-                                idade={character.birth_year}
                                 altura={character.height}
                                 peso={character.mass}
                             />
